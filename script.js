@@ -1,6 +1,22 @@
 // Assignment code here
-function generatePassword(passwordLenght) {
+function generatePassword() {
   let password = "";
+
+  let passwordLenght = prompt(
+    "Choose a password lenght. Please add at least 8 characters and no more thant 128"
+  );
+
+  if (passwordLenght < 8) {
+    alert(
+      "Your password lenght is too short, please select at least 8 characters."
+    );
+    return;
+  } else if (passwordLenght > 128) {
+    alert(
+      "Your password lenght is too big, please seleat no more than 128 characters."
+    );
+    return;
+  }
 
   for (var i = 0; i < passwordLenght; i++) {
     //TODO: Create a random number
@@ -30,7 +46,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(16);
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
