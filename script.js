@@ -41,9 +41,10 @@ function generatePassword() {
     //If the user want lowerCase character and the first charater to  the password.
     if (password.includeLowerCase) {
       password.charSet += lowerCaseOptions;
-      charIndex = Math.floor(Math.random() * 26);
+      charIndex = getRandomArbitrary(0, 26);
       char = lowerCaseOptions[charIndex];
       password.finalPassword += char;
+      console.log(charIndex);
     }
     //Get from the user if we want uppercase charaters in the password
     password.includeUpperCase = confirm(
@@ -52,7 +53,7 @@ function generatePassword() {
     //If the user want upperCase character and the first charater to  the password.
     if (password.includeUpperCase) {
       password.charSet += upperCaseOptions;
-      charIndex = Math.floor(Math.random() * 26);
+      charIndex = getRandomArbitrary(0, 26);
       char = upperCaseOptions[charIndex];
       password.finalPassword += char;
     }
@@ -63,7 +64,7 @@ function generatePassword() {
     //If the user want numbers add the first number to  the password.
     if (password.includeNumbers) {
       password.charSet += numbersOptions;
-      charIndex = Math.floor(Math.random() * 10);
+      charIndex = getRandomArbitrary(0, 10);
       char = numbersOptions[charIndex];
       password.finalPassword += char;
     }
@@ -74,7 +75,7 @@ function generatePassword() {
     //If the user want Special Characters in the password, add the first special Character to the password.
     if (password.includeSpecialCharacters) {
       password.charSet += specialCharacterdsOptions;
-      charIndex = Math.floor(Math.random() * 31);
+      charIndex = getRandomArbitrary(0, 31);
       char = specialCharacterdsOptions[charIndex];
       password.finalPassword += char;
     }
@@ -108,6 +109,9 @@ function generatePassword() {
 }
 
 //Generate a Random number between min and max
+var getRandomArbitrary = function (min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+};
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
