@@ -26,6 +26,13 @@ function generatePassword() {
       }
       return false;
     },
+    askPasswordLength: function () {
+      this.requiredLength = Number(
+        prompt(
+          "Choose a password lenght. Please add at least 8 characters and no more thant 128"
+        )
+      );
+    },
     askIncludeLowerCase: function () {
       this.includeLowerCase = confirm(
         "You want to inlcuye LowerCase characters?"
@@ -73,11 +80,7 @@ function generatePassword() {
   };
 
   //Get the password lenght from the user
-  password.requiredLength = Number(
-    prompt(
-      "Choose a password lenght. Please add at least 8 characters and no more thant 128"
-    )
-  );
+  password.askPasswordLength();
   //Validate if the password lenght have the criterial between 8 and 128
   if (validatePasswordLength(8, 128, password.requiredLength)) {
     //Get from the user if we wnat lowercase charaters in the password
