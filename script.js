@@ -1,11 +1,12 @@
 // Assignment code here
 function generatePassword() {
   //charSets for each specific requirements
-  const lowerCaseOptions = "abcdefghijklmnopqrstuvwxyz";
-  const upperCaseOptions = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const numbersOptions = "0123456789";
-  const specialCharacterdsOptions = '!"#$%&()*+,-./:;<=>?@[]^_`{|}~' + "'";
+  const lowerCaseCharSets = "abcdefghijklmnopqrstuvwxyz";
+  const upperCaseCharSets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numbersCharSets = "0123456789";
+  const specialCharactersCharSets = '!"#$%&()*+,-./:;<=>?@[]^_`{|}~' + "'";
 
+  //Define the password object.
   const password = {
     finalPassword: "",
     charSet: "",
@@ -18,24 +19,45 @@ function generatePassword() {
       this.includeLowerCase = confirm(
         "You want to inlcuye LowerCase characters?"
       );
+      //If the user want lowerCase character and the first charater to  the password.
+      if (this.includeLowerCase) {
+        this.charSet += lowerCaseCharSets;
+        const charIndex = getRandomArbitrary(0, lowerCaseCharSets.length);
+        this.finalPassword += lowerCaseCharSets[charIndex];
+      }
     },
     askIncludeUpperCase: function () {
       this.includeUpperCase = confirm(
         "You want to inlcuye UpperCase characters?"
       );
+      //If the user want upperCase character and the first charater to  the password.
+      if (this.includeUpperCase) {
+        this.charSet += upperCaseCharSets;
+        const charIndex = getRandomArbitrary(0, upperCaseCharSets.length);
+        this.finalPassword += upperCaseCharSets[charIndex];
+      }
     },
     askIncludeNumbers: function () {
       this.includeNumbers = confirm("You want to inlcuye Numbers characters?");
+      //If the user want numbers add the first number to  the password.
+      if (this.includeNumbers) {
+        this.charSet += numbersCharSets;
+        charIndex = getRandomArbitrary(0, numbersCharSets.length);
+        this.finalPassword += numbersCharSets[charIndex];
+      }
     },
     askIncludeSpecialCharacters: function () {
       this.includeSpecialCharacters = confirm(
         "You want to inlcuye Special Characters characters?"
       );
+      //If the user want Special Characters in the password, add the first special Character to the password.
+      if (this.includeSpecialCharacters) {
+        this.charSet += specialCharactersCharSets;
+        charIndex = getRandomArbitrary(0, specialCharactersCharSets.length);
+        this.finalPassword += specialCharactersCharSets[charIndex];
+      }
     },
   };
-
-  let charIndex = 0;
-  let char = "";
 
   //Get the password lenght from the user
   password.requiredLength = prompt(
@@ -56,42 +78,13 @@ function generatePassword() {
   } else {
     //Get from the user if we wnat lowercase charaters in the password
     password.askIncludeLowerCase();
-
-    //If the user want lowerCase character and the first charater to  the password.
-    if (password.includeLowerCase) {
-      password.charSet += lowerCaseOptions;
-      charIndex = getRandomArbitrary(0, 26);
-      char = lowerCaseOptions[charIndex];
-      password.finalPassword += char;
-      console.log(charIndex);
-    }
     //Get from the user if we want uppercase charaters in the password
     password.askIncludeUpperCase();
-    //If the user want upperCase character and the first charater to  the password.
-    if (password.includeUpperCase) {
-      password.charSet += upperCaseOptions;
-      charIndex = getRandomArbitrary(0, 26);
-      char = upperCaseOptions[charIndex];
-      password.finalPassword += char;
-    }
     //Get from the user if we want numbers charaters in the password.
     password.askIncludeNumbers();
-    //If the user want numbers add the first number to  the password.
-    if (password.includeNumbers) {
-      password.charSet += numbersOptions;
-      charIndex = getRandomArbitrary(0, 10);
-      char = numbersOptions[charIndex];
-      password.finalPassword += char;
-    }
+
     //Get from the user if we want numbers charaters in the password
     password.askIncludeSpecialCharacters();
-    //If the user want Special Characters in the password, add the first special Character to the password.
-    if (password.includeSpecialCharacters) {
-      password.charSet += specialCharacterdsOptions;
-      charIndex = getRandomArbitrary(0, 31);
-      char = specialCharacterdsOptions[charIndex];
-      password.finalPassword += char;
-    }
     //Validate if the user have at least one set of characters for  the password.
     if (
       !password.includeLowerCase &&
