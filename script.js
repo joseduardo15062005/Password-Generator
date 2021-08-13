@@ -85,7 +85,6 @@ function generatePassword() {
     }
     //Get from the user if we want numbers charaters in the password
     password.askIncludeSpecialCharacters();
-
     //If the user want Special Characters in the password, add the first special Character to the password.
     if (password.includeSpecialCharacters) {
       password.charSet += specialCharacterdsOptions;
@@ -93,7 +92,6 @@ function generatePassword() {
       char = specialCharacterdsOptions[charIndex];
       password.finalPassword += char;
     }
-
     //Validate if the user have at least one set of characters for  the password.
     if (
       !password.includeLowerCase &&
@@ -103,6 +101,7 @@ function generatePassword() {
     ) {
       alert("You need select at least one option for your password.");
     } else {
+      //Add the rest of the charcters to the password.
       for (
         var i = password.finalPassword.length;
         i < password.requiredLength;
