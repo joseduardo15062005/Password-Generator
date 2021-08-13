@@ -134,7 +134,7 @@ var getRandomArbitrary = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-//Validate Password Lenght Requirements
+//Validate Password Length Requirements
 var validatePasswordLength = function (min, max, requiredLength) {
   if (requiredLength >= min && requiredLength <= max) return true;
   return false;
