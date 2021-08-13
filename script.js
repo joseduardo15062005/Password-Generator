@@ -15,6 +15,17 @@ function generatePassword() {
     includeUpperCase: false,
     includeNumbers: false,
     includeSpecialCharacters: false,
+    validatePrompts: function () {
+      if (
+        !this.includeLowerCase &&
+        !this.includeUpperCase &&
+        !this.includeNumbers &&
+        !this.includeSpecialCharacters
+      ) {
+        return true;
+      }
+      return false;
+    },
     askIncludeLowerCase: function () {
       this.includeLowerCase = confirm(
         "You want to inlcuye LowerCase characters?"
@@ -60,38 +71,24 @@ function generatePassword() {
   };
 
   //Get the password lenght from the user
-  password.requiredLength = prompt(
-    "Choose a password lenght. Please add at least 8 characters and no more thant 128"
+  password.requiredLength = Number(
+    prompt(
+      "Choose a password lenght. Please add at least 8 characters and no more thant 128"
+    )
   );
-
   //Validate if the password lenght have the criterial between 8 and 128
-  if (password.requiredLength < 8 || password.requiredLength > 128) {
-    if (password.requiredLength < 8) {
-      alert(
-        "Your password lenght is too short, please select at least 8 characters."
-      );
-    } else if (password.requiredLength > 128) {
-      alert(
-        "Your password lenght is too big, please seleat no more than 128 characters."
-      );
-    }
-  } else {
+  if (validatePasswordLength(8, 128, password.requiredLength)) {
     //Get from the user if we wnat lowercase charaters in the password
     password.askIncludeLowerCase();
     //Get from the user if we want uppercase charaters in the password
     password.askIncludeUpperCase();
     //Get from the user if we want numbers charaters in the password.
     password.askIncludeNumbers();
-
     //Get from the user if we want numbers charaters in the password
     password.askIncludeSpecialCharacters();
     //Validate if the user have at least one set of characters for  the password.
-    if (
-      !password.includeLowerCase &&
-      !password.includeUpperCase &&
-      !password.includeNumbers &&
-      !password.includeSpecialCharacters
-    ) {
+
+    if (password.validatePrompts()) {
       alert("You need select at least one option for your password.");
     } else {
       //Add the rest of the charcters to the password.
@@ -109,6 +106,16 @@ function generatePassword() {
       console.log(password);
       return password.finalPassword;
     }
+  } else {
+    if (password.requiredLength < 8) {
+      alert(
+        "Your password lenght is too short, please select at least 8 characters."
+      );
+    } else if (password.requiredLength > 128) {
+      alert(
+        "Your password lenght is too big, please seleat no more than 128 characters."
+      );
+    }
   }
 
   return "";
@@ -117,6 +124,12 @@ function generatePassword() {
 //Generate a Random number between min and max
 var getRandomArbitrary = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
+};
+
+//Validate Password Lenght Requirements
+var validatePasswordLength = function (min, max, requiredLength) {
+  if (requiredLength >= min && requiredLength <= max) return true;
+  return false;
 };
 
 // Get references to the #generate element
