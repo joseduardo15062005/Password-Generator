@@ -33,8 +33,8 @@ function generatePassword() {
       //If the user want lowerCase character and the first charater to  the password.
       if (this.includeLowerCase) {
         this.charSet += lowerCaseCharSets;
-        const charIndex = getRandomArbitrary(0, lowerCaseCharSets.length);
-        this.finalPassword += lowerCaseCharSets[charIndex];
+        this.finalPassword +=
+          lowerCaseCharSets[getRandomArbitrary(0, lowerCaseCharSets.length)];
       }
     },
     askIncludeUpperCase: function () {
@@ -44,8 +44,8 @@ function generatePassword() {
       //If the user want upperCase character and the first charater to  the password.
       if (this.includeUpperCase) {
         this.charSet += upperCaseCharSets;
-        const charIndex = getRandomArbitrary(0, upperCaseCharSets.length);
-        this.finalPassword += upperCaseCharSets[charIndex];
+        this.finalPassword +=
+          upperCaseCharSets[getRandomArbitrary(0, upperCaseCharSets.length)];
       }
     },
     askIncludeNumbers: function () {
@@ -53,8 +53,8 @@ function generatePassword() {
       //If the user want numbers add the first number to  the password.
       if (this.includeNumbers) {
         this.charSet += numbersCharSets;
-        charIndex = getRandomArbitrary(0, numbersCharSets.length);
-        this.finalPassword += numbersCharSets[charIndex];
+        this.finalPassword +=
+          numbersCharSets[getRandomArbitrary(0, numbersCharSets.length)];
       }
     },
     askIncludeSpecialCharacters: function () {
@@ -64,8 +64,10 @@ function generatePassword() {
       //If the user want Special Characters in the password, add the first special Character to the password.
       if (this.includeSpecialCharacters) {
         this.charSet += specialCharactersCharSets;
-        charIndex = getRandomArbitrary(0, specialCharactersCharSets.length);
-        this.finalPassword += specialCharactersCharSets[charIndex];
+        this.finalPassword +=
+          specialCharactersCharSets[
+            getRandomArbitrary(0, specialCharactersCharSets.length)
+          ];
       }
     },
   };
@@ -91,16 +93,14 @@ function generatePassword() {
     if (password.validatePrompts()) {
       alert("You need select at least one option for your password.");
     } else {
-      //Add the rest of the charcters to the password.
+      //Complete the lenght of the password.
       for (
         var i = password.finalPassword.length;
         i < password.requiredLength;
         i++
       ) {
-        //Add any of the option between 32 and 122
-        charIndex = Math.floor(Math.random() * password.charSet.length);
-        char = password.charSet[charIndex];
-
+        //Get a char from Password Charset and Add to the final password.
+        char = password.charSet[getRandomArbitrary(0, password.charSet.length)];
         password.finalPassword += char;
       }
       console.log(password);
