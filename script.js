@@ -14,6 +14,24 @@ function generatePassword() {
     includeUpperCase: false,
     includeNumbers: false,
     includeSpecialCharacters: false,
+    askIncludeLowerCase: function () {
+      this.includeLowerCase = confirm(
+        "You want to inlcuye LowerCase characters?"
+      );
+    },
+    askIncludeUpperCase: function () {
+      this.includeUpperCase = confirm(
+        "You want to inlcuye UpperCase characters?"
+      );
+    },
+    askIncludeNumbers: function () {
+      this.includeNumbers = confirm("You want to inlcuye Numbers characters?");
+    },
+    askIncludeSpecialCharacters: function () {
+      this.includeSpecialCharacters = confirm(
+        "You want to inlcuye Special Characters characters?"
+      );
+    },
   };
 
   let charIndex = 0;
@@ -25,19 +43,20 @@ function generatePassword() {
   );
 
   //Validate if the password lenght have the criterial between 8 and 128
-  if (password.requiredLength < 8) {
-    alert(
-      "Your password lenght is too short, please select at least 8 characters."
-    );
-  } else if (password.requiredLength > 128) {
-    alert(
-      "Your password lenght is too big, please seleat no more than 128 characters."
-    );
+  if (password.requiredLength < 8 || password.requiredLength > 128) {
+    if (password.requiredLength < 8) {
+      alert(
+        "Your password lenght is too short, please select at least 8 characters."
+      );
+    } else if (password.requiredLength > 128) {
+      alert(
+        "Your password lenght is too big, please seleat no more than 128 characters."
+      );
+    }
   } else {
     //Get from the user if we wnat lowercase charaters in the password
-    password.includeLowerCase = confirm(
-      "You want to inlcuye LowerCase characters?"
-    );
+    password.askIncludeLowerCase();
+
     //If the user want lowerCase character and the first charater to  the password.
     if (password.includeLowerCase) {
       password.charSet += lowerCaseOptions;
@@ -47,9 +66,7 @@ function generatePassword() {
       console.log(charIndex);
     }
     //Get from the user if we want uppercase charaters in the password
-    password.includeUpperCase = confirm(
-      "You want to inlcuye UpperCase characters?"
-    );
+    password.askIncludeUpperCase();
     //If the user want upperCase character and the first charater to  the password.
     if (password.includeUpperCase) {
       password.charSet += upperCaseOptions;
@@ -57,10 +74,8 @@ function generatePassword() {
       char = upperCaseOptions[charIndex];
       password.finalPassword += char;
     }
-    //Get from the user if we want numbers charaters in the password
-    password.includeNumbers = confirm(
-      "You want to inlcuye Numbers characters?"
-    );
+    //Get from the user if we want numbers charaters in the password.
+    password.askIncludeNumbers();
     //If the user want numbers add the first number to  the password.
     if (password.includeNumbers) {
       password.charSet += numbersOptions;
@@ -69,9 +84,8 @@ function generatePassword() {
       password.finalPassword += char;
     }
     //Get from the user if we want numbers charaters in the password
-    password.includeSpecialCharacters = confirm(
-      "You want to inlcuye Special Characters characters?"
-    );
+    password.askIncludeSpecialCharacters();
+
     //If the user want Special Characters in the password, add the first special Character to the password.
     if (password.includeSpecialCharacters) {
       password.charSet += specialCharacterdsOptions;
