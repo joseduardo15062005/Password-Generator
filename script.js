@@ -83,6 +83,13 @@ function generatePassword() {
           ];
       }
     },
+    fillPassword: function () {
+      for (var i = this.finalPassword.length; i < this.requiredLength; i++) {
+        //Get a char from Password Charset and Add to the final password.
+        char = this.charSet[getRandomArbitrary(0, this.charSet.length)];
+        this.finalPassword += char;
+      }
+    },
   };
   //Get the password length from the user
   password.askPasswordLength();
@@ -102,15 +109,7 @@ function generatePassword() {
       alert("You need select at least one option for your password.");
     } else {
       //Complete the length of the password.
-      for (
-        var i = password.finalPassword.length;
-        i < password.requiredLength;
-        i++
-      ) {
-        //Get a char from Password Charset and Add to the final password.
-        char = password.charSet[getRandomArbitrary(0, password.charSet.length)];
-        password.finalPassword += char;
-      }
+      password.fillPassword();
       console.log(password);
       return password.finalPassword;
     }
