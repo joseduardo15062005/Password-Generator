@@ -31,7 +31,7 @@ function generatePassword() {
       //Ask User from the length of the password.
       this.requiredLength = Number(
         prompt(
-          "Choose a password lenght. Please add at least 8 characters and no more thant 128"
+          "Choose a password length. Please add at least 8 characters and no more thant 128"
         )
       );
     },
@@ -93,7 +93,7 @@ function generatePassword() {
   };
   //Get the password length from the user
   password.askPasswordLength();
-  //Validate if the password lenght have the criterial between 8 and 128
+  //Validate if the password length have the criterial between 8 and 128
   if (validatePasswordLength(8, 128, password.requiredLength)) {
     //Get from the user if we want lowercase charaters in the password
     password.askIncludeLowerCase();
@@ -116,11 +116,11 @@ function generatePassword() {
   } else {
     if (password.requiredLength < 8) {
       alert(
-        "Your password lenght is too short, please select at least 8 characters."
+        "Your password length is too short, please select at least 8 characters."
       );
     } else if (password.requiredLength > 128) {
       alert(
-        "Your password lenght is too big, please seleat no more than 128 characters."
+        "Your password length is too big, please seleat no more than 128 characters."
       );
     }
   }
