@@ -4,7 +4,7 @@ function generatePassword() {
   const lowerCaseCharSets = "abcdefghijklmnopqrstuvwxyz";
   const upperCaseCharSets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const numbersCharSets = "0123456789";
-  const specialCharactersCharSets = '!"#$%&()*+,-./:;<=>?@[]^_`{|}~' + "'";
+  const specialCharactersCharSets = '!"#$%&()*+,-./:;<=>?@[]^_`{|}~\'';
 
   //Define the password object.
   const password = {
@@ -139,10 +139,10 @@ var validatePasswordLength = function (min, max, requiredLength) {
   return false;
 };
 
-// Get references to the #generate element
+//Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
+//Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -150,5 +150,5 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Add event listener to generate button
+//Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
