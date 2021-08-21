@@ -1,6 +1,6 @@
 # Horiseon Website
 
-![Mockup Screenshot](assets/images/screenshot.png)
+![Mockup Screenshot](assets/images/screen-shot.png)
 
 ## Purpose
 
